@@ -6,7 +6,8 @@
     "build": "babel src --out-dir . --ignore **/__tests__",
     "prepublishOnly": "cross-env NODE_ENV=production npm run build",
     "watch": "babel -w src --out-dir . --ignore **/__tests__",
-    "test": "jest"
+    "test": "jest",
+    "postversion": "sh changelog.sh > CHANGELOG.md"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/shwilliam"
