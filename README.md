@@ -6,10 +6,9 @@
 
 ### 1. Add this package as a dependency
 
-```terminal
-yarn add gatsby-source-copy
-npm i gatsby-source-copy
-```
+`yarn add gatsby-source-copy`
+
+`npm install --save gatsby-source-copy`
 
 ### 2. Configure the plugin in `gatsby-config.js`
 
@@ -31,12 +30,62 @@ module.exports = {
 }
 ```
 
+### 3. Querying copy
+
+All queried documents will return a node with `content` containing the raw text
+of the source document.
+
+If a `format` has been specified, `content` will also contain the parsed data of
+the document, accessed with the target format as the key. The return-type of the
+formatted data depends on the format specified. For more details consult [the
+documentation of your desired format option](#formats).
+
+#### Example query
+
+```json
+query CopyQuery {
+  allCopy {
+    edges {
+      node {
+        content {
+          raw
+          archieml {
+            document_title
+          }
+          markdown {
+            tokens {
+              type
+              text
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+## Google Docs
+
+### Permissions
+
+To ensure your Google Document can be sourced, make sure you have enabled anyone
+with a link to view the file. This can be configured in the "Share" menu.
+
+### Document ID
+
+Sourcing content with `gatsby-source-copy` requires configuration containing the
+IDs of the target documents. This ID can be found in your Google Doc URL, commonly
+between `d/` and `/edit`. For example, a document with the URL
+`https://docs.google.com/document/d/dj2k3/edit`, has the ID `dj2k3`.
+
 ## Formats
 
 By default, `gatsby-source-copy` **will not** parse your content but return the
-raw text of the document. If you wish to parse content authored in Markdown or
-ArchieML, you can either set the global parser to "markdown" or "archieml", or
-provide this configuration on a particular document.
+raw text of the document. To parse the contents of the document, provide a
+`format` configuration option. This option can be set globally or per document.
+`gatsby-source-copy` currently supports parsing [Markdown](https://www.markdownguide.org/)
+and [ArchieML](http://archieml.org/).
 
 ```javascript
 // global
@@ -63,10 +112,10 @@ provide this configuration on a particular document.
 
 ### Parsers
 
-| Format   | Parser                                                    |
-| -------- | --------------------------------------------------------- |
-| Markdown | [`marked.js`](https://marked.js.org/#/USING_PRO.md#lexer) |
-| ArchieML | [`archieml-js`](https://github.com/newsdev/archieml-js)   |
+| Format   | Key          | Parser                                                    |
+| -------- | ------------ | --------------------------------------------------------- |
+| Markdown | `"markdown"` | [`marked.js`](https://marked.js.org/#/USING_PRO.md#lexer) |
+| ArchieML | `"archieml"` | [`archieml-js`](https://github.com/newsdev/archieml-js)   |
 
 ## Contributing
 
