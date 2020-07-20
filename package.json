@@ -1,0 +1,27 @@
+{
+  "name": "gatsby-source-copy",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"🥺\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shwilliam/gatsby-source-copy.git"
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-source-plugin",
+    "google-docs"
+  ],
+  "author": "William Lindvall <shwilliam@hey.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shwilliam/gatsby-source-copy/issues"
+  },
+  "homepage": "https://github.com/shwilliam/gatsby-source-copy#readme",
+  "dependencies": {
+    "node-fetch": "^2.6.0"
+  }
+}
