@@ -1,6 +1,6 @@
-const fetch = require("node-fetch")
-const archieml = require("archieml")
-const marked = require("marked")
+const fetch = require('node-fetch')
+const archieml = require('archieml')
+const marked = require('marked')
 
 const makeGoogleDocsReqURL = id =>
   `https://docs.google.com/document/d/${id}/export?format=txt`
@@ -13,10 +13,10 @@ const fetchGoogleDocsContent = async id => {
 }
 
 const generateNodes = (
-  { actions, createNodeId, createContentDigest },
-  { key, content }
+  {actions, createNodeId, createContentDigest},
+  {key, content},
 ) => {
-  const nodeData = { key, content }
+  const nodeData = {key, content}
   const nodeId = createNodeId(`gatsby-source-copy-${key}`)
   const nodeContent = JSON.stringify(nodeData)
 
@@ -25,14 +25,14 @@ const generateNodes = (
     parent: null,
     children: [],
     internal: {
-      type: "CopyDocument",
-      mediaType: "text/plain",
+      type: 'CopyDocument',
+      mediaType: 'text/plain',
       content: nodeContent,
-      contentDigest: createContentDigest(nodeData)
-    }
+      contentDigest: createContentDigest(nodeData),
+    },
   }
 
-  actions.createNode({ ...nodeData, ...nodeMeta })
+  actions.createNode({...nodeData, ...nodeMeta})
 }
 
 const parseArchie = content => archieml.load(content)
@@ -40,34 +40,34 @@ const parseArchie = content => archieml.load(content)
 const parseMarkdown = content => marked.lexer(content)
 
 exports.sourceNodes = async (
-  { actions, createNodeId, createContentDigest },
-  configOptions
+  {actions, createNodeId, createContentDigest},
+  configOptions,
 ) => {
-  const { documents } = configOptions
+  const {documents} = configOptions
 
-  documents.forEach(async ({ id, key, format }) => {
+  documents.forEach(async ({id, key, format}) => {
     const contentRaw = await fetchGoogleDocsContent(id)
 
-    let formattedContent = { raw: contentRaw }
-    if ([configOptions.format, format].includes("archieml"))
+    let formattedContent = {raw: contentRaw}
+    if ([configOptions.format, format].includes('archieml'))
       formattedContent = {
         ...formattedContent,
-        archieml: parseArchie(contentRaw)
+        archieml: parseArchie(contentRaw),
       }
-    else if ([configOptions.format, format].includes("markdown"))
+    else if ([configOptions.format, format].includes('markdown'))
       formattedContent = {
         ...formattedContent,
-        markdown: parseMarkdown(contentRaw)
+        markdown: parseMarkdown(contentRaw),
       }
 
     generateNodes(
-      { actions, createNodeId, createContentDigest },
-      { key, content: formattedContent }
+      {actions, createNodeId, createContentDigest},
+      {key, content: formattedContent},
     )
   })
 
   console.log(
-    `[gatsby-source-copy] Fetched copy from ${documents.length} documents`
+    `[gatsby-source-copy] Fetched copy from ${documents.length} documents`,
   )
 
   return
