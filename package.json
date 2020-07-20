@@ -1,5 +1,5 @@
 {
-  "name": "gatsby-source-copy",
+  "name": "@shwilliam/gatsby-source-copy",
   "version": "0.1.0",
   "description": "Easiest way to source copy for a Gatsby site",
   "scripts": {
@@ -8,6 +8,7 @@
     "watch": "babel -w src --out-dir . --ignore **/__tests__",
     "test": "jest"
   },
+  "publishConfig": { "registry": "https://npm.pkg.github.com/shwilliam" },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/shwilliam/gatsby-source-copy.git"
