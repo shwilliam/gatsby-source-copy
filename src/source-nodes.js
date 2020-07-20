@@ -1,16 +1,16 @@
 import {fetchDocuments} from './fetch-documents'
 import {generateNodes} from './generate-nodes'
 import {processDocument} from './process-document'
+import {validateConfig} from './validation'
 
 export const sourceNodes = async (
   {actions, createNodeId, createContentDigest},
   configOptions,
 ) => {
-  const {documents} = configOptions
+  validateConfig(configOptions)
 
-  documents.forEach(async ({id, key, format}) => {
+  configOptions.documents.forEach(async ({id, key, format}) => {
     const contentRaw = await fetchDocuments(id)
-
     const options = format ? {...configOptions, format} : configOptions
     const formattedContent = processDocument(options, contentRaw)
 
@@ -21,7 +21,7 @@ export const sourceNodes = async (
   })
 
   console.log(
-    `[gatsby-source-copy] Fetched copy from ${documents.length} documents`,
+    `[gatsby-source-copy] Fetched copy from ${configOptions.documents.length} documents`,
   )
 
   return

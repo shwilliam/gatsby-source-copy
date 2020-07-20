@@ -1,6 +1,8 @@
 const archieml = require('archieml')
 const marked = require('marked')
 
+export const SUPPORTED_PARSERS = ['markdown', 'archieml']
+
 const parseArchie = content => archieml.load(content)
 const parseMarkdown = content => marked.lexer(content)
 
