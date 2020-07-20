@@ -1,4 +1,5 @@
 const fetch = require("node-fetch")
+const archieml = require("archieml")
 
 const makeGoogleDocsReqURL = id =>
   `https://docs.google.com/document/d/${id}/export?format=txt`
@@ -11,7 +12,7 @@ const fetchGoogleDocsContent = async id => {
 }
 
 const generateNodes = (
-  { createNode, createNodeId, createContentDigest },
+  { actions, createNodeId, createContentDigest },
   { key, content }
 ) => {
   const nodeData = { key, content }
@@ -30,28 +31,35 @@ const generateNodes = (
     }
   }
 
-  createNode({ ...nodeData, ...nodeMeta })
+  actions.createNode({ ...nodeData, ...nodeMeta })
 }
+
+const parseArchie = content => archieml.load(content)
 
 exports.sourceNodes = async (
   { actions, createNodeId, createContentDigest },
   configOptions
 ) => {
-  const { createNode } = actions
+  const { documents } = configOptions
 
-  const documentsConfig = configOptions.documents
-
-  documentsConfig.forEach(async ({ id, key }) => {
+  documents.forEach(async ({ id, key, format }) => {
     const contentRaw = await fetchGoogleDocsContent(id)
 
+    let formattedContent = { raw: contentRaw }
+    if ([configOptions.format, format].includes("archieml"))
+      formattedContent = {
+        ...formattedContent,
+        archieml: parseArchie(contentRaw)
+      }
+
     generateNodes(
-      { createNode, createNodeId, createContentDigest },
-      { key, content: contentRaw }
+      { actions, createNodeId, createContentDigest },
+      { key, content: formattedContent }
     )
   })
 
   console.log(
-    `[gatsby-source-copy] Fetched copy from ${documentsConfig.length} documents`
+    `[gatsby-source-copy] Fetched copy from ${documents.length} documents`
   )
 
   return
