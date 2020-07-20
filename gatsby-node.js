@@ -1,5 +1,6 @@
 const fetch = require("node-fetch")
 const archieml = require("archieml")
+const marked = require("marked")
 
 const makeGoogleDocsReqURL = id =>
   `https://docs.google.com/document/d/${id}/export?format=txt`
@@ -36,6 +37,8 @@ const generateNodes = (
 
 const parseArchie = content => archieml.load(content)
 
+const parseMarkdown = content => marked.lexer(content)
+
 exports.sourceNodes = async (
   { actions, createNodeId, createContentDigest },
   configOptions
@@ -50,6 +53,11 @@ exports.sourceNodes = async (
       formattedContent = {
         ...formattedContent,
         archieml: parseArchie(contentRaw)
+      }
+    else if ([configOptions.format, format].includes("markdown"))
+      formattedContent = {
+        ...formattedContent,
+        markdown: parseMarkdown(contentRaw)
       }
 
     generateNodes(
