@@ -22,7 +22,7 @@ module.exports = {
         documents: [
           {
             key: '<SOME_UNIQUE_KEY>',
-            id: '<YOUR_GOOGLE_DOC_ID>',
+            id: '<GOOGLE_DOC_ID>',
           },
         ],
       },
@@ -67,3 +67,15 @@ provide this configuration on a particular document.
 | -------- | --------------------------------------------------------- |
 | Markdown | [`marked.js`](https://marked.js.org/#/USING_PRO.md#lexer) |
 | ArchieML | [`archieml-js`](https://github.com/newsdev/archieml-js)   |
+
+## Contributing
+
+This project is open to and encourages contributions! Feel free to discuss any
+bug fixes/features in the [issues](https://github.com/shwilliam/gatsby-source-copy/issues).
+If you wish to work on this project:
+
+1. Fork [this project](https://github.com/shwilliam/gatsby-source-copy)
+2. Create a branch (`git checkout -b new-branch`)
+3. Commit your changes (`git commit -am 'add new feature'`)
+4. Push to the branch (`git push origin new-branch`)
+5. [Submit a pull request!](https://github.com/shwilliam/gatsby-source-copy/pull/new/master)
