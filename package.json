@@ -1,7 +1,7 @@
 {
   "name": "gatsby-source-copy",
   "version": "0.1.0",
-  "description": "",
+  "description": "Easiest way to source copy for a Gatsby site",
   "main": "index.js",
   "scripts": {
     "test": "echo \"🥺\" && exit 1"
