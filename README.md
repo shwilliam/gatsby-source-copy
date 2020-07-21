@@ -112,10 +112,10 @@ and [ArchieML](http://archieml.org/).
 
 ### Parsers
 
-| Format   | Key          | Parser                                                    |
-| -------- | ------------ | --------------------------------------------------------- |
-| Markdown | `"markdown"` | [`marked.js`](https://marked.js.org/#/USING_PRO.md#lexer) |
-| ArchieML | `"archieml"` | [`archieml-js`](https://github.com/newsdev/archieml-js)   |
+| Format   | Key          | Parser                                                    | Example                                                                                                  |
+| -------- | ------------ | --------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| Markdown | `"markdown"` | [`marked.js`](https://marked.js.org/#/USING_PRO.md#lexer) | [examples/markdown.md](https://github.com/shwilliam/gatsby-source-copy/blob/main/examples/markdown.md)   |
+| ArchieML | `"archieml"` | [`archieml-js`](https://github.com/newsdev/archieml-js)   | [examples/archieml.txt](https://github.com/shwilliam/gatsby-source-copy/blob/main/examples/archieml.txt) |
 
 Can't find the format you're looking for? [Open an issue](https://github.com/shwilliam/gatsby-source-copy/issues)
 or [add your own](https://github.com/shwilliam/gatsby-source-copy/compare)!

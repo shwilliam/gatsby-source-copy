@@ -1,0 +1,9 @@
+headline: ArchieML Example
+
+[sections]
+
+title: Foo
+image: http://microgradient.herokuapp.com/foo
+
+title: Bar
+image: http://microgradient.herokuapp.com/bar
