@@ -81,6 +81,13 @@ between `d/` and `/edit`. For example, a document with the URL
 
 ## Formats
 
+Typically, Gatsby sites utilize transformer plugins to parse content for you to
+query. For example, [`gatsby-transformer-remark`](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-transformer-remark)
+for transforming markdown. To provide better ergonomics for querying content,
+this plugin provides support for parsing [several popular markup languages](#parsers)
+used for authoring copy. This enables simpler queries by exposing the parsed
+content alongside the raw text that was sourced.
+
 By default, `gatsby-source-copy` **will not** parse your content but return the
 raw text of the document. To parse the contents of the document, provide a
 `format` configuration option. This option can be set globally or per document.
