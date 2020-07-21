@@ -118,7 +118,7 @@ and [ArchieML](http://archieml.org/).
 | ArchieML | `"archieml"` | [`archieml-js`](https://github.com/newsdev/archieml-js)   | [examples/archieml.txt](https://github.com/shwilliam/gatsby-source-copy/blob/main/examples/archieml.txt) |
 
 Can't find the format you're looking for? [Open an issue](https://github.com/shwilliam/gatsby-source-copy/issues)
-or [add your own](https://github.com/shwilliam/gatsby-source-copy/compare)!
+or [add your own](#contributing)!
 
 ## Contributing
 
