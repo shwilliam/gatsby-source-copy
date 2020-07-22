@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/shwilliam/gatsby-source-copy#readme",
   "dependencies": {
+    "archieml": "^0.4.2",
     "marked": "^1.1.1",
     "node-fetch": "^2.6.0"
   },
