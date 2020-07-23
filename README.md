@@ -32,8 +32,8 @@ module.exports = {
 
 ### 3. Querying copy
 
-All queried documents will return a node with `content` containing the raw text
-of the source document.
+All queried documents will return a node with `content` containing a `raw` field
+with the text of the source document.
 
 If a `format` has been specified, `content` will also contain the parsed data of
 the document, accessed with the target format as the key. The return-type of the
