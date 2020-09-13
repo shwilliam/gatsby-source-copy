@@ -30,7 +30,7 @@
   "dependencies": {
     "archieml": "^0.4.2",
     "marked": "^1.1.1",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",
